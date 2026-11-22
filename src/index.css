@@ -10,7 +10,7 @@
   --surface: #ffffff;
   --border: #e8eaf2;
   --text: #1b1b3a;
-  --muted: #7a7f9a;
+  --muted: #62677f;
   --radius-sm: 10px;
   --radius-md: 14px;
   --radius-lg: 20px;
@@ -901,7 +901,7 @@ button
 .pill--high
 {
   background: #fdf0e3;
-  color: #b86a0f;
+  color: #8f4f05;
 }
 
 .pill--medium, .pill--low
@@ -1186,5 +1186,77 @@ button
   {
     flex: 1;
     min-height: 44px;
+  }
+}
+
+/* ===== RESPONSIVE FIXES ===== */
+
+/* Center the content on very wide screens. */
+.main
+{
+  margin: 0 auto;
+}
+
+/* The brand in the header is only for mobile. */
+.header__brand
+{
+  display: none;
+  align-items: center;
+  gap: 10px;
+}
+
+@media (max-width: 768px)
+{
+  .header__brand
+  {
+    display: flex;
+  }
+
+  .header__breadcrumb
+  {
+    display: none;
+  }
+}
+
+@media (max-width: 600px)
+{
+  /* Row layout: title on top, pills and date next, then the status and buttons. */
+  .task-card__meta
+  {
+    order: 2;
+  }
+
+  .task-card__actions
+  {
+    order: 3;
+    flex-basis: 100%;
+    justify-content: space-between;
+    padding-left: 38px;
+  }
+
+  .tab
+  {
+    padding: 8px 10px;
+    font-size: 13px;
+  }
+
+  .tasks-section__header
+  {
+    flex-direction: column;
+  }
+
+  .focus-notes__headline
+  {
+    font-size: 22px;
+  }
+
+  .stat-card
+  {
+    padding: 16px;
+  }
+
+  .stat-card__value
+  {
+    font-size: 26px;
   }
 }

@@ -227,7 +227,7 @@ function App()
 
   return AppJsx
 
-  return AppJsx 
+  
 }
 
 export default App;
