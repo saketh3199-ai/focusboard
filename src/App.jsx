@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { sampleTasks } from "./data/sampleTasks";
 import TaskForm from "./components/TaskForm";
+import StatCard from "./components/StatCard";
+import SearchBar from "./components/SearchBar";
 
 const STORAGE_KEY = "focusboard_tasks";
 
@@ -102,10 +104,61 @@ function App()
     closeForm();
   };
 
+
+
+  // 6. STATUS: change only the status of one task.
+  const changeStatus = (id, newStatus) =>
+  {
+    setTasks
+    (
+      tasks.map
+      (
+        (task) =>
+        {
+          if (task.id === id)
+          {
+            return {...task,status: newStatus};
+          }
+          return task;
+        }
+      )
+    );
+  };
+
+  const totalTasks = tasks.length;
+
+  const inProgressTasks = tasks.filter
+  (
+    (task) =>
+    {
+      return task.status === "In progress";
+    }
+  ).length;
+
+  const completedTasks = tasks.filter
+  (
+    (task) =>
+    {
+      return task.status === "Completed";
+    }
+  ).length;
+
+
+  const completionPercent = totalTasks === 0 ? 0 : Math.round((completedTasks / totalTasks) * 100);
+  // let completed tasks = 5 and totalTasks=10, then (5/10)*100 = 50
+
+
+
   const AppJsx = 
   <div>
     <h1>FocusBoard</h1>
-    <p>{tasks.length} tasks loaded</p>
+    <div>
+      <StatCard title="Total tasks" value={totalTasks} note="Across all projects"/>
+      <StatCard title="In progress" value={inProgressTasks} note="Keep the momentum"/>
+      <StatCard title="Completed" value={completedTasks} note="Great work this week"/>
+      <StatCard title="Completion" value={completionPercent + "%"} note="Of all tasks"/>
+    </div>
+
     <button onClick={openCreateForm}>New task</button>
 
     {showForm && <TaskForm key={editingTask ? editingTask.id : "new"} task={editingTask} onSave={saveTask} onCancel={closeForm} />}
@@ -113,16 +166,21 @@ function App()
     <ul>
     {
         tasks.map
-      (
-        (task) => 
         (
-          <li key={task.id}>
-            {task.title} - {task.status} - {task.priority} - {task.dueDate}
-            <button onClick={() => openEditForm(task)}>Edit</button>
-            <button onClick={() => deleteTask(task.id)}>Delete</button>
-          </li>
+          (task) => 
+          (
+            <li key={task.id}>
+              {task.title} - {task.priority} - {task.dueDate}
+              <select aria-label={"Change status of " + task.title} value={task.status} onChange={(event) => changeStatus(task.id, event.target.value)}>
+                <option value="To do">To do</option>
+                <option value="In progress">In progress</option>
+                <option value="Completed">Completed</option>
+              </select>
+              <button onClick={() => openEditForm(task)}>Edit</button>
+              <button onClick={() => deleteTask(task.id)}>Delete</button>
+            </li>
+          )
         )
-      )
     }
     </ul>
   </div>
