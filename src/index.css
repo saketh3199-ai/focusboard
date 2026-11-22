@@ -1013,3 +1013,178 @@ button
     height: 40px;
   }
 }
+
+
+/* ===== MODALS: form and delete dialog ===== */
+.modal-overlay
+{
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  padding: 16px;
+  background: rgba(27, 27, 58, 0.45);
+  overflow-y: auto;
+}
+
+/* margin: auto centers the modal, and still lets a tall one scroll without being cut off at the top. */
+.modal
+{
+  width: 100%;
+  max-width: 520px;
+  margin: auto;
+  padding: 28px;
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  box-shadow: 0 24px 60px rgba(27, 27, 58, 0.25);
+}
+
+.modal--small
+{
+  max-width: 420px;
+}
+
+.modal__header
+{
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.modal__title
+{
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.modal__subtitle
+{
+  margin-top: 4px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.modal__message
+{
+  margin-top: 10px;
+  color: var(--muted);
+  overflow-wrap: anywhere;
+}
+
+.modal__required
+{
+  margin-bottom: 16px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.modal__actions
+{
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+
+.modal__actions--plain
+{
+  margin-top: 8px;
+  border-top: 0;
+}
+
+/* ===== FORM FIELDS ===== */
+.field
+{
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.field__label
+{
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.field__error
+{
+  font-size: 12px;
+  font-weight: 500;
+  color: #c0392b;
+}
+
+.field-row
+{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.input
+{
+  width: 100%;
+  padding: 11px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+}
+
+.input::placeholder
+{
+  color: var(--muted);
+}
+
+.input:focus
+{
+  border-color: var(--primary);
+}
+
+.input--error
+{
+  border-color: #c0392b;
+}
+
+.textarea
+{
+  min-height: 96px;
+  resize: vertical;
+}
+
+.btn--danger
+{
+  background: #d64545;
+  color: #ffffff;
+}
+
+.btn--danger:hover
+{
+  background: #b93636;
+}
+
+/* ===== RESPONSIVE: modals ===== */
+@media (max-width: 480px)
+{
+  .modal
+  {
+    padding: 20px;
+  }
+
+  .field-row
+  {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .modal__actions .btn
+  {
+    flex: 1;
+    min-height: 44px;
+  }
+}
