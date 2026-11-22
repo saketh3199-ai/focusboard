@@ -324,3 +324,318 @@ button
     font-size: 26px;
   }
 }
+
+
+
+/* ===== FOCUS NOTES CAROUSEL ===== */
+.focus-notes
+{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 32px 36px;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(135deg, #6c4df0 0%, #7f63f5 55%, #8e74f7 100%);
+  color: #ffffff;
+  overflow: hidden;
+}
+
+.focus-notes__content
+{
+  flex: 1;
+  min-width: 0;
+}
+
+.focus-notes__label
+{
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  opacity: 0.8;
+}
+
+.focus-notes__headline
+{
+  margin-top: 10px;
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.focus-notes__text
+{
+  margin-top: 6px;
+  opacity: 0.85;
+}
+
+.focus-notes__indicators
+{
+  display: flex;
+  gap: 8px;
+  margin-top: 22px;
+}
+
+.focus-notes__indicator
+{
+  position: relative;
+  width: 36px;
+  height: 4px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.35);
+}
+
+/* An invisible bigger area around the thin bar makes it easy to click and tap. */
+.focus-notes__indicator::after
+{
+  content: "";
+  position: absolute;
+  inset: -12px -2px;
+}
+
+.focus-notes__indicator--active
+{
+  background: #ffffff;
+}
+
+.focus-notes__card
+{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 250px;
+  padding: 14px 16px;
+  border-radius: var(--radius-md);
+  background: #ffffff;
+  color: var(--text);
+  transform: rotate(-4deg);
+  box-shadow: 0 12px 30px rgba(30, 20, 90, 0.25);
+}
+
+.focus-notes__card-check
+{
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #e6f7ee;
+  color: #1f9d55;
+}
+
+.focus-notes__card-check svg
+{
+  width: 16px;
+  height: 16px;
+}
+
+.focus-notes__card-body
+{
+  flex: 1;
+  min-width: 0;
+}
+
+.focus-notes__card-label
+{
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+
+.focus-notes__card-title
+{
+  margin-top: 2px;
+  font-weight: 700;
+}
+
+.focus-notes__progress-row
+{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.focus-notes__progress
+{
+  flex: 1;
+  height: 5px;
+  border-radius: 999px;
+  background: var(--primary-soft);
+  overflow: hidden;
+}
+
+.focus-notes__progress span
+{
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--primary);
+}
+
+.focus-notes__percent
+{
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.focus-notes__controls
+{
+  display: flex;
+  gap: 10px;
+}
+
+.focus-notes__button
+{
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+}
+
+.focus-notes__button--next
+{
+  background: #ffffff;
+  color: var(--primary);
+}
+
+.focus-notes__button svg
+{
+  width: 18px;
+  height: 18px;
+}
+
+/* ===== STAT CARDS ===== */
+.stats
+{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.stat-card
+{
+  padding: 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+}
+
+.stat-card__header
+{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.stat-card__icon
+{
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-sm);
+}
+
+.stat-card__icon svg
+{
+  width: 18px;
+  height: 18px;
+}
+
+.stat-card__title
+{
+  font-weight: 500;
+  color: var(--muted);
+}
+
+.stat-card__body
+{
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.stat-card__value
+{
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.stat-card__note
+{
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.stat-card--purple .stat-card__icon
+{
+  background: var(--primary-soft);
+  color: var(--primary);
+}
+
+.stat-card--blue .stat-card__icon
+{
+  background: #e6f1fb;
+  color: #2b7fd1;
+}
+
+.stat-card--green .stat-card__icon
+{
+  background: #e6f7ee;
+  color: #1f9d55;
+}
+
+.stat-card--orange .stat-card__icon
+{
+  background: #fdf0e3;
+  color: #e08a1e;
+}
+
+/* ===== RESPONSIVE: carousel and stats ===== */
+@media (max-width: 1024px)
+{
+  .stats
+  {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px)
+{
+  .focus-notes
+  {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 24px 20px;
+  }
+
+  .focus-notes__headline
+  {
+    font-size: 24px;
+  }
+
+  /* The floating card is left out on small screens, like the Figma mobile frame. */
+  .focus-notes__card
+  {
+    display: none;
+  }
+
+  .stat-card__body
+  {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+}

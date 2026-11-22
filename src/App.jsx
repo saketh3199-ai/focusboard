@@ -9,6 +9,7 @@ import FocusNotes from "./components/FocusNotes";
 import Sidebar from "./components/Sidebar";
 import Header from "./components/Header";
 import TaskList from "./components/TaskList";
+import { ListChecks, Clock, Check, TrendingUp } from "lucide-react";
 
 const STORAGE_KEY = "focusboard_tasks";
 
@@ -194,11 +195,11 @@ function App()
         <FocusNotes/>
 
         {/* Statistics */}
-        <section aria-label="Overview statistics">
-          <StatCard title="Total tasks" value={totalTasks} note="Across all projects"/>
-          <StatCard title="In progress" value={inProgressTasks} note="Keep the momentum"/>
-          <StatCard title="Completed" value={completedTasks} note="Great work this week"/>
-          <StatCard title="Completion" value={completionPercent + "%"} note="Of all tasks"/>
+        <section className="stats" aria-label="Overview statistics">
+          <StatCard title="Total tasks" value={totalTasks} note="Across all projects" icon={ListChecks} tone="purple"/>
+          <StatCard title="In progress" value={inProgressTasks} note="Keep the momentum" icon={Clock} tone="blue"/>
+          <StatCard title="Completed" value={completedTasks} note="Great work this week" icon={Check} tone="green"/>
+          <StatCard title="Completion" value={completionPercent + "%"} note="Of all tasks" icon={TrendingUp} tone="orange"/>
         </section>
 
         {/* My tasks */}
