@@ -6,6 +6,9 @@ import SearchBar from "./components/SearchBar";
 import FilterTabs from "./components/FilterTabs";
 import ConfirmDialog from "./components/ConfirmDialog";
 import FocusNotes from "./components/FocusNotes";
+import Sidebar from "./components/Sidebar";
+import Header from "./components/Header";
+import TaskList from "./components/TaskList";
 
 const STORAGE_KEY = "focusboard_tasks";
 
@@ -111,8 +114,6 @@ function App()
       closeForm();
     };
 
-
-
     // 6. STATUS: change only the status of one task.
     const changeStatus = (id, newStatus) =>
     {
@@ -132,16 +133,12 @@ function App()
       );
     };
 
-
     const resetFilters = () =>
     {
       setSearchText("");
       setStatusFilter("All");
       setPriorityFilter("All");
     };
-
-
-
 
     const totalTasks = tasks.length;
 
@@ -161,11 +158,9 @@ function App()
       }
     ).length;
 
-
     const completionPercent = totalTasks === 0 ? 0 : Math.round((completedTasks / totalTasks) * 100);
-  // let completed tasks = 5 and totalTasks=10, then (5/10)*100 = 50
+    // let completed tasks = 5 and totalTasks=10, then (5/10)*100 = 50
 
-  
     const visibleTasks = tasks.filter
     (
       (task) =>
@@ -180,48 +175,52 @@ function App()
 
   const AppJsx = 
   <div>
-    <h1>FocusBoard</h1>
-    <FocusNotes/>
+    <Sidebar/>
+
     <div>
-      <StatCard title="Total tasks" value={totalTasks} note="Across all projects"/>
-      <StatCard title="In progress" value={inProgressTasks} note="Keep the momentum"/>
-      <StatCard title="Completed" value={completedTasks} note="Great work this week"/>
-      <StatCard title="Completion" value={completionPercent + "%"} note="Of all tasks"/>
+      <Header/>
+
+      <main>
+        {/* Page heading */}
+        <section>
+          <div>
+            <h1>Your work, in focus.</h1>
+            <p>Plan your day, stay organized, and celebrate small wins.</p>
+          </div>
+          <button type="button" onClick={openCreateForm}>New task</button>
+        </section>
+
+        {/* Focus Notes carousel */}
+        <FocusNotes/>
+
+        {/* Statistics */}
+        <section aria-label="Overview statistics">
+          <StatCard title="Total tasks" value={totalTasks} note="Across all projects"/>
+          <StatCard title="In progress" value={inProgressTasks} note="Keep the momentum"/>
+          <StatCard title="Completed" value={completedTasks} note="Great work this week"/>
+          <StatCard title="Completion" value={completionPercent + "%"} note="Of all tasks"/>
+        </section>
+
+        {/* My tasks */}
+        <section aria-label="My tasks">
+          <div>
+            <div>
+              <h2>My tasks</h2>
+              <p>Manage and track everything in one place.</p>
+            </div>
+            <button type="button" onClick={resetFilters}>View all tasks</button>
+          </div>
+
+          <SearchBar value={searchText} onChange={setSearchText}/>
+          <FilterTabs statusFilter={statusFilter} onStatusChange={setStatusFilter} priorityFilter={priorityFilter} onPriorityChange={setPriorityFilter} onReset={resetFilters} totalCount={totalTasks}/>
+
+          <TaskList tasks={visibleTasks} onEdit={openEditForm} onDelete={setTaskToDelete} onStatusChange={changeStatus}/>
+        </section>
+      </main>
     </div>
 
-    <button onClick={openCreateForm}>New task</button>
-
-    {showForm && <TaskForm key={editingTask ? editingTask.id : "new"} task={editingTask} onSave={saveTask} onCancel={closeForm} />}
+    {showForm && <TaskForm key={editingTask ? editingTask.id : "new"} task={editingTask} onSave={saveTask} onCancel={closeForm}/>}
     {taskToDelete && <ConfirmDialog title="Delete task" message={"This will remove \"" + taskToDelete.title + "\" from your tasks."} onConfirm={confirmDelete} onCancel={() => setTaskToDelete(null)}/>}
-    <SearchBar value={searchText} onChange={setSearchText}/>
-    <FilterTabs statusFilter={statusFilter} onStatusChange={setStatusFilter} priorityFilter={priorityFilter} onPriorityChange={setPriorityFilter} onReset={resetFilters} totalCount={totalTasks}/>
-    {visibleTasks.length === 0 && <p>No tasks match your filters.</p>}
-
-    
-
-    
-
-
-    <ul>
-    {
-        visibleTasks.map
-        (
-          (task) => 
-          (
-            <li key={task.id}>
-              {task.title} - {task.priority} - {task.dueDate}
-              <select aria-label={"Change status of " + task.title} value={task.status} onChange={(event) => changeStatus(task.id, event.target.value)}>
-                <option value="To do">To do</option>
-                <option value="In progress">In progress</option>
-                <option value="Completed">Completed</option>
-              </select>
-              <button onClick={() => openEditForm(task)}>Edit</button>
-              <button onClick={() => setTaskToDelete(task)}>Delete</button>
-            </li>
-          )
-        )
-    }
-    </ul>
   </div>
 
   return AppJsx 
