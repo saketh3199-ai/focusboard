@@ -5,11 +5,11 @@ function TaskList({ tasks, onEdit, onDelete, onStatusChange })
 {
   if (tasks.length === 0)
   {
-    return <p>No tasks match your filters.</p>;
+    return <p className="empty-state">No tasks match your filters.</p>;
   }
 
   const TaskListJsx =
-  <ul>
+  <ul className="task-list">
     {
       tasks.map
       (

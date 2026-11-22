@@ -1,17 +1,19 @@
 const STATUS_TABS = ["All","To do","In progress","Completed"];
 
-function FilterTabs({ statusFilter, onStatusChange, priorityFilter, onPriorityChange, onReset, totalCount })
+// `children` is whatever is placed between <FilterTabs> and </FilterTabs> in the parent.
+// Here it is the search box, so it can sit next to the priority dropdown.
+function FilterTabs({ statusFilter, onStatusChange, priorityFilter, onPriorityChange, onReset, totalCount, children })
 {
   const FilterTabsJsx =
-  <div>
+  <div className="toolbar">
     {/* Status tabs */}
-    <div>
+    <div className="tabs" role="group" aria-label="Filter by status">
       {
         STATUS_TABS.map
         (
           (tab) =>
           (
-            <button key={tab} type="button" aria-pressed={statusFilter === tab} style={{fontWeight: statusFilter === tab ? "bold" : "normal"}} onClick={() => onStatusChange(tab)}>
+            <button key={tab} type="button" className={statusFilter === tab ? "tab tab--active" : "tab"} aria-pressed={statusFilter === tab} onClick={() => onStatusChange(tab)}>
               {tab === "All" ? "All tasks " + totalCount : tab}
             </button>
           )
@@ -19,18 +21,20 @@ function FilterTabs({ statusFilter, onStatusChange, priorityFilter, onPriorityCh
       }
     </div>
 
-    {/* Priority filter */}
-    <div>
-      <label htmlFor="priorityFilter">Priority</label>
-      <select id="priorityFilter" value={priorityFilter} onChange={(event) => onPriorityChange(event.target.value)}>
-        <option value="All">All</option>
-        <option value="Low">Low</option>
-        <option value="Medium">Medium</option>
-        <option value="High">High</option>
-      </select>
-    </div>
+    {/* Search, priority filter and reset */}
+    <div className="toolbar__right">
+      {children}
 
-    <button type="button" onClick={onReset}>Reset filters</button>
+      <label htmlFor="priorityFilter" className="visually-hidden">Filter by priority</label>
+      <select id="priorityFilter" className="select" value={priorityFilter} onChange={(event) => onPriorityChange(event.target.value)}>
+        <option value="All">Priority: All</option>
+        <option value="Low">Priority: Low</option>
+        <option value="Medium">Priority: Medium</option>
+        <option value="High">Priority: High</option>
+      </select>
+
+      <button type="button" className="btn btn--outline" onClick={onReset}>Reset filters</button>
+    </div>
   </div>
 
   return FilterTabsJsx

@@ -639,3 +639,377 @@ button
     gap: 6px;
   }
 }
+
+
+
+/* ===== UTILITIES ===== */
+.visually-hidden
+{
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ===== MY TASKS SECTION ===== */
+.tasks-section
+{
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.tasks-section__header
+{
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.tasks-section__header h2
+{
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.tasks-section__subtitle
+{
+  margin-top: 4px;
+  color: var(--muted);
+}
+
+/* ===== TOOLBAR: tabs, search, priority ===== */
+.toolbar
+{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+}
+
+.toolbar .btn
+{
+  padding: 8px 14px;
+}
+
+.tabs
+{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.tab
+{
+  padding: 8px 14px;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.tab:hover
+{
+  background: var(--bg);
+}
+
+.tab--active
+{
+  background: var(--primary-soft);
+  color: var(--primary);
+}
+
+.toolbar__right
+{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.search
+{
+  position: relative;
+}
+
+.search__icon
+{
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  width: 16px;
+  height: 16px;
+  transform: translateY(-50%);
+  color: var(--muted);
+  pointer-events: none;
+}
+
+.search__input
+{
+  width: 220px;
+  padding: 9px 12px 9px 36px;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: var(--bg);
+}
+
+.search__input::placeholder
+{
+  color: var(--muted);
+}
+
+.select, .status-select
+{
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  font-weight: 600;
+}
+
+/* ===== TASK ROWS ===== */
+.task-list
+{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.task-card
+{
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 18px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+}
+
+.task-card__check
+{
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border: 2px solid #cfc6f9;
+  border-radius: 7px;
+  color: #ffffff;
+}
+
+.task-card__check svg
+{
+  width: 14px;
+  height: 14px;
+}
+
+.task-card__check--done
+{
+  border-color: #1f9d55;
+  background: #1f9d55;
+}
+
+.task-card__info
+{
+  flex: 1;
+  min-width: 0;
+}
+
+.task-card__title
+{
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.task-card__description
+{
+  margin-top: 2px;
+  font-size: 12px;
+  color: var(--muted);
+  overflow-wrap: anywhere;
+}
+
+.task-card__meta
+{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.task-card__date
+{
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 72px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.task-card__date svg
+{
+  width: 14px;
+  height: 14px;
+}
+
+.task-card__actions
+{
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.status-select
+{
+  padding: 6px 10px;
+  font-size: 12px;
+}
+
+.pill
+{
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.pill--category
+{
+  background: var(--primary-soft);
+  color: var(--primary);
+}
+
+.pill--high
+{
+  background: #fdf0e3;
+  color: #b86a0f;
+}
+
+.pill--medium, .pill--low
+{
+  background: #e6f7ee;
+  color: #1a7f47;
+}
+
+.icon-button
+{
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--muted);
+}
+
+.icon-button:hover
+{
+  background: var(--primary-soft);
+  color: var(--primary);
+}
+
+.icon-button svg
+{
+  width: 16px;
+  height: 16px;
+}
+
+.empty-state
+{
+  padding: 32px;
+  border: 1px dashed var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  color: var(--muted);
+  text-align: center;
+}
+
+/* ===== RESPONSIVE: task rows and toolbar ===== */
+@media (max-width: 1024px)
+{
+  /* Title and actions stay on the first line, pills and date wrap underneath. */
+  .task-card
+  {
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+
+  .task-card__info
+  {
+    flex: 1 1 0;
+  }
+
+  .task-card__actions
+  {
+    order: 2;
+  }
+
+  .task-card__meta
+  {
+    order: 3;
+    flex-basis: 100%;
+    padding-left: 38px;
+  }
+}
+
+@media (max-width: 768px)
+{
+  .toolbar
+  {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  /* Search first, then the tabs, like the Figma mobile frame. */
+  .toolbar__right
+  {
+    order: -1;
+  }
+
+  .search
+  {
+    flex: 1 1 100%;
+  }
+
+  .search__input
+  {
+    width: 100%;
+  }
+
+  .tabs
+  {
+    gap: 6px;
+  }
+
+  .tab
+  {
+    flex: 1;
+    min-height: 40px;
+  }
+
+  .icon-button
+  {
+    width: 40px;
+    height: 40px;
+  }
+}

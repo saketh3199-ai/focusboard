@@ -203,17 +203,18 @@ function App()
         </section>
 
         {/* My tasks */}
-        <section aria-label="My tasks">
-          <div>
+         <section className="tasks-section" aria-label="My tasks">
+          <div className="tasks-section__header">
             <div>
               <h2>My tasks</h2>
-              <p>Manage and track everything in one place.</p>
+              <p className="tasks-section__subtitle">Manage and track everything in one place.</p>
             </div>
-            <button type="button" onClick={resetFilters}>View all tasks</button>
+            <button type="button" className="btn btn--soft" onClick={resetFilters}>View all tasks</button>
           </div>
 
-          <SearchBar value={searchText} onChange={setSearchText}/>
-          <FilterTabs statusFilter={statusFilter} onStatusChange={setStatusFilter} priorityFilter={priorityFilter} onPriorityChange={setPriorityFilter} onReset={resetFilters} totalCount={totalTasks}/>
+          <FilterTabs statusFilter={statusFilter} onStatusChange={setStatusFilter} priorityFilter={priorityFilter} onPriorityChange={setPriorityFilter} onReset={resetFilters} totalCount={totalTasks}>
+            <SearchBar value={searchText} onChange={setSearchText}/>
+          </FilterTabs>
 
           <TaskList tasks={visibleTasks} onEdit={openEditForm} onDelete={setTaskToDelete} onStatusChange={changeStatus}/>
         </section>
