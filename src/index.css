@@ -1,0 +1,326 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
+/* ===== DESIGN TOKENS: replace these with the exact Figma values ===== */
+:root
+{
+  --primary: #6c4df0;
+  --primary-dark: #5a3fd8;
+  --primary-soft: #eeeafd;
+  --bg: #f5f6fa;
+  --surface: #ffffff;
+  --border: #e8eaf2;
+  --text: #1b1b3a;
+  --muted: #7a7f9a;
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+}
+
+/* ===== RESET ===== */
+*, *::before, *::after
+{
+  box-sizing: border-box;
+}
+
+body
+{
+  margin: 0;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 14px;
+  line-height: 1.4;
+  background: var(--bg);
+  color: var(--text);
+}
+
+h1, h2, h3, p
+{
+  margin: 0;
+}
+
+button, input, select, textarea
+{
+  font: inherit;
+  color: inherit;
+}
+
+button
+{
+  cursor: pointer;
+}
+
+/* Visible focus ring for keyboard users. */
+:focus-visible
+{
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* ===== BUTTONS ===== */
+.btn
+{
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  padding: 10px 18px;
+  font-weight: 600;
+}
+
+.btn--primary
+{
+  background: var(--primary);
+  color: #ffffff;
+}
+
+.btn--primary:hover
+{
+  background: var(--primary-dark);
+}
+
+.btn--soft
+{
+  background: var(--primary-soft);
+  color: var(--primary);
+}
+
+.btn--outline
+{
+  background: var(--surface);
+  border-color: var(--border);
+}
+
+/* ===== APP LAYOUT: sidebar on the left, content on the right ===== */
+.app
+{
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  min-height: 100vh;
+}
+
+.app__body
+{
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.main
+{
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  width: 100%;
+  max-width: 1200px;
+  padding: 32px;
+}
+
+/* ===== SIDEBAR ===== */
+.sidebar
+{
+  position: sticky;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  height: 100vh;
+  padding: 24px 16px;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+}
+
+.sidebar__brand
+{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 8px;
+}
+
+.sidebar__logo
+{
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-sm);
+  background: var(--primary);
+  color: #ffffff;
+}
+
+.sidebar__name
+{
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.sidebar__nav
+{
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.sidebar__label
+{
+  margin-bottom: 8px;
+  padding: 0 12px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+
+.nav-item
+{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--muted);
+  font-weight: 500;
+  text-align: left;
+}
+
+.nav-item svg
+{
+  width: 18px;
+  height: 18px;
+}
+
+.nav-item:hover, .nav-item--active
+{
+  background: var(--primary-soft);
+  color: var(--primary);
+}
+
+.nav-item--active
+{
+  font-weight: 600;
+}
+
+/* ===== HEADER ===== */
+.header
+{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+  padding: 0 32px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+
+.header__breadcrumb
+{
+  display: flex;
+  gap: 6px;
+  color: var(--muted);
+}
+
+.header__current
+{
+  font-weight: 600;
+  color: var(--text);
+}
+
+.header__avatar
+{
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--primary-soft);
+  color: var(--primary);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* ===== PAGE HEADING ===== */
+.page-heading
+{
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.page-heading h1
+{
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.page-heading__subtitle
+{
+  margin-top: 6px;
+  color: var(--muted);
+}
+
+/* ===== TABLET AND MOBILE (768px and below) ===== */
+@media (max-width: 768px)
+{
+  .app
+  {
+    grid-template-columns: 1fr;
+  }
+
+  /* The sidebar turns into a bottom navigation bar. */
+  .sidebar
+  {
+    position: fixed;
+    top: auto;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 20;
+    flex-direction: row;
+    height: auto;
+    padding: 8px 12px;
+    border-right: 0;
+    border-top: 1px solid var(--border);
+  }
+
+  .sidebar__brand, .sidebar__label
+  {
+    display: none;
+  }
+
+  .sidebar__nav
+  {
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+  }
+
+  .nav-item
+  {
+    flex-direction: column;
+    gap: 4px;
+    min-height: 44px;
+    padding: 6px 10px;
+    font-size: 11px;
+  }
+
+  .header
+  {
+    padding: 0 16px;
+  }
+
+  .main
+  {
+    padding: 20px 16px 96px;
+  }
+
+  .page-heading
+  {
+    flex-direction: column;
+  }
+
+  .page-heading h1
+  {
+    font-size: 26px;
+  }
+}

@@ -173,21 +173,21 @@ function App()
       }
     );
 
-  const AppJsx = 
-  <div>
+    const AppJsx = 
+  <div className="app">
     <Sidebar/>
 
-    <div>
+    <div className="app__body">
       <Header/>
 
-      <main>
+      <main className="main">
         {/* Page heading */}
-        <section>
+        <section className="page-heading">
           <div>
             <h1>Your work, in focus.</h1>
-            <p>Plan your day, stay organized, and celebrate small wins.</p>
+            <p className="page-heading__subtitle">Plan your day, stay organized, and celebrate small wins.</p>
           </div>
-          <button type="button" onClick={openCreateForm}>New task</button>
+          <button type="button" className="btn btn--primary" onClick={openCreateForm}>New task</button>
         </section>
 
         {/* Focus Notes carousel */}
@@ -222,6 +222,8 @@ function App()
     {showForm && <TaskForm key={editingTask ? editingTask.id : "new"} task={editingTask} onSave={saveTask} onCancel={closeForm}/>}
     {taskToDelete && <ConfirmDialog title="Delete task" message={"This will remove \"" + taskToDelete.title + "\" from your tasks."} onConfirm={confirmDelete} onCancel={() => setTaskToDelete(null)}/>}
   </div>
+
+  return AppJsx
 
   return AppJsx 
 }

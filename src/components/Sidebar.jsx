@@ -13,14 +13,15 @@ function Sidebar()
 {
   const [activeItem, setActiveItem] = useState("Overview");
 
-  const SidebarJsx =
-  <aside>
-    <div>
-      <span>FocusBoard</span>
+    const SidebarJsx =
+  <aside className="sidebar">
+    <div className="sidebar__brand">
+      <span className="sidebar__logo"><LayoutGrid aria-hidden="true"/></span>
+      <span className="sidebar__name">FocusBoard</span>
     </div>
 
-    <nav aria-label="Main navigation">
-      <p>WORKSPACE</p>
+    <nav className="sidebar__nav" aria-label="Main navigation">
+      <p className="sidebar__label">WORKSPACE</p>
       {
         NAV_ITEMS.map
         (
@@ -29,7 +30,7 @@ function Sidebar()
             const Icon = item.icon;
 
             return (
-              <button key={item.label} type="button" aria-current={activeItem === item.label ? "page" : undefined} onClick={() => setActiveItem(item.label)}>
+              <button key={item.label} type="button" className={activeItem === item.label ? "nav-item nav-item--active" : "nav-item"} aria-current={activeItem === item.label ? "page" : undefined} onClick={() => setActiveItem(item.label)}>
                 <Icon aria-hidden="true"/>
                 {item.label}
               </button>
